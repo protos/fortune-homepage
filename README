@@ -1,0 +1,9 @@
+mongoDB database
+node restAPI service reads database.
+clientside react component / es6, babel
+sass / gulp.
+
+
+
+sudo service mongod start | stop | restart
+
