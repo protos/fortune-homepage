@@ -12,6 +12,7 @@ var readFile = (filePath) => {
     })    
 }
 
+
 var getRandomInteger = (min, max) => {
 //    var min = Math.ceil(0);
 //    var max = Math.floor(fortunesArray.length);

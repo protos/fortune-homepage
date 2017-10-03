@@ -5,9 +5,22 @@ sass / gulp.
 
 
 
+npm start
 sudo service mongod start | stop | restart
 sudo tail /var/log/mongodb/mongod.log
+
+
 
 http://127.0.0.1:27017/
  mongoimport -d fortunes -c fortuneCollection --jsonArray < fortunes.json
  
+ 
+mongo quick reference
+
+show dbs 	
+use <db> 	
+show collections
+db.fortuneCollection.find()
+
+
+
