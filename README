@@ -41,3 +41,7 @@ To exit the Mongo shell run quit()
 To stop the Mongo daemon hit ctrl-c
 
 
+React Setup
+
+npm i -g create-react-app
+create-react-app client
