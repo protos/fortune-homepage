@@ -1,21 +1,18 @@
-var express = require('express');
-var fs = require('fs');
+const express = require('express');
+const fs = require('fs');
 
-var app = express();
-var fortunesArray = [];
+const app = express();
+let fortunesArray = [];
 
 
-var readFile = (filePath) => {
+let readFile = (filePath) => {
     fs.readFile(filePath, 'utf8', function(err, data) {
-        //console.log ('data: ' + data);
         fortunesArray = data.split('###');
     })    
-}
+};
 
 
-var getRandomInteger = (min, max) => {
-//    var min = Math.ceil(0);
-//    var max = Math.floor(fortunesArray.length);
+let getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
@@ -26,6 +23,6 @@ app.get('/', function (req, res) {
 
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('Fortune app listening on port 3000!');
     readFile('fortune.dat');
 });

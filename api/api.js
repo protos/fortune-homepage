@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
 /**
  * Module Dependencies
  */
 const config  = require('./config'),
       restify = require('restify'),
-      mongodb = require('mongodb').MongoClient
+      mongodb = require('mongodb').MongoClient;
 
 /**
  * Initialize Server
@@ -13,26 +13,24 @@ const config  = require('./config'),
 const server = restify.createServer({
     name    : config.name,
     version : config.version
-})
+});
 
 /**
  * Bundled Plugins (http://restify.com/#bundled-plugins)
  */
-server.use(restify.plugins.jsonBodyParser({ mapParams: true }))
-server.use(restify.plugins.acceptParser(server.acceptable))
-server.use(restify.plugins.queryParser({ mapParams: true }))
-server.use(restify.plugins.fullResponse())
+server.use(restify.plugins.jsonBodyParser({ mapParams: true }));
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.queryParser({ mapParams: true }));
+server.use(restify.plugins.fullResponse());
 
 /**
  * Lift Server, Connect to DB & Require Route File
  */
 server.listen(config.port, () => {
 
-    // establish connection to mongodb atlas
     mongodb.connect(config.db.uri, (err, db) => {
-
         if (err) {
-            console.log('An error occurred while attempting to connect to MongoDB', err)
+            console.log('An error occurred while attempting to connect to MongoDB', err);
             process.exit(1)
         }
 
@@ -42,10 +40,8 @@ server.listen(config.port, () => {
             config.version,
             config.port,
             config.env
-        )
+        );
 
         require('./routes')({ db, server })
-
     })
-
-})
+});
