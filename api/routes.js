@@ -19,6 +19,16 @@ module.exports = function(ctx) {
         next()
     });
 
+    server.get('/all-fortunes', (req, res, next) => {
+        fortunePromise.then((fortunes) => {
+            res.send(200, fortunes);
+        })
+        .catch((err) => {
+            res.send(200, "Something horrible has happened !!!");
+            next()
+        });
+    });
+
 
     server.get('/', (req, res, next) => {
         res.send(404, "Not Found!!");
