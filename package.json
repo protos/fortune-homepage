@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodejs app.js"
+    "start": "node app.js",
+    "start-api": "node api/api.js"
   },
   "repository": {
     "type": "git",

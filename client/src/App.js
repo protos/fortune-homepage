@@ -2,14 +2,25 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-    state = {fortunes:[]};
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fortune: null
+        }
+    }
 
     componentDidMount() {
-        console.log ("Getting Fortunes");
+        console.log ("Getting Fortune");
         fetch('/random-fortune')
-            .then(res => res.json().then(fortunes => {
-                console.log ("Fortunes!: " + fortunes);
-                this.setState({ fortunes }); }))
+            .then(response => response.json()
+                .then(node => {
+                    const fortune = node['fortune'];
+                    console.log("Fortunes!: " + fortune);
+                    this.setState({ fortune });
+                    console.log("Fortunes state: " + this.state.fortune);
+                })
+            )
     }
 
 
@@ -19,8 +30,8 @@ class App extends Component {
                 <header className="App-header">
                     <h1 className="App-title">Todays Fortune.</h1>
                 </header>
-                <div>
-                    Here: {this.state.fortunes.map(fortune => {fortune})}
+                <div class="fortune-text">
+                    {this.state.fortune}
                 </div>
             </div>
         );

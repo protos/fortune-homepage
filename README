@@ -23,8 +23,6 @@ show collections
 db.fortuneCollection.find()
 
 
-
-
 Mongo setup on mac
 
 Install and Run MongoDB with Homebrew
@@ -45,3 +43,15 @@ React Setup
 
 npm i -g create-react-app
 create-react-app client
+
+
+Start api server
+npm run start-api
+
+Start Webpack server
+cd client/
+npm start
+
+
+
+https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/

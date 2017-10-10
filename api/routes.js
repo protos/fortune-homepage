@@ -10,7 +10,7 @@ module.exports = function(ctx) {
 
         fortunePromise.then((fortunes) => {
             let index = Math.floor(Math.random() * fortunes.length - 1);
-            res.send(200, fortunes[index].fortune);
+            res.send(200, fortunes[index]);
 
         })
         .catch((err) => {
