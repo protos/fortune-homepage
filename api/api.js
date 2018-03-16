@@ -41,7 +41,6 @@ server.listen(config.port, () => {
             config.port,
             config.env
         );
-
         require('./routes')({ db, server })
     })
 });

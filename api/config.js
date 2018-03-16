@@ -8,5 +8,7 @@ module.exports = {
     db: {
         uri: 'mongodb://localhost:27017/fortunes',
     },
-    spaceStationUrl: 'http://api.open-notify.org/iss-now.json'
+    spaceStationUrl: 'http://api.open-notify.org/iss-now.json',
+    stockEbayPriceUrl: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=EBAY&apikey=0SHSCD7B8E86NMFH',
+    stockPaypalPriceUrl: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=PYPL&apikey=0SHSCD7B8E86NMFH'
 };
