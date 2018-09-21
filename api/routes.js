@@ -12,6 +12,8 @@ module.exports = function(ctx) {
           server = ctx.server;
 
     const fortunePromise = db.collection('fortuneCollection').find().toArray();
+    const dictionaryPromise = db.collection('english-dutch').find().toArray();
+
 
     server.get('/random-fortune', (req, res, next) => {
 

@@ -28,7 +28,15 @@ server.use(restify.plugins.fullResponse());
  */
 server.listen(config.port, () => {
 
-    mongodb.connect(config.db.uri, (err, db) => {
+    mongodb.connect(config.db.fortuneUri, (err, db) => {
+        if (err) {
+            console.log('An error occurred while attempting to connect to MongoDB', err);
+            process.exit(1)
+        }
+        require('./routes')({ db, server })
+    })
+
+    mongodb.connect(config.db.dictionaryUri, (err, db) => {
         if (err) {
             console.log('An error occurred while attempting to connect to MongoDB', err);
             process.exit(1)
@@ -43,4 +51,5 @@ server.listen(config.port, () => {
         );
         require('./routes')({ db, server })
     })
+
 });
