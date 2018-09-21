@@ -13,12 +13,12 @@ sudo tail /var/log/mongodb/mongod.log
 
 http://127.0.0.1:27017/
  mongoimport -d fortunes -c fortuneCollection --jsonArray < fortunes.json
- 
- 
+
+
 mongo quick reference
 
-show dbs 	
-use <db> 	
+show dbs
+use <db>
 show collections
 db.fortuneCollection.find()
 
@@ -37,6 +37,16 @@ Run the Mongo daemon, in one of your terminal windows run mongod. This should st
 Run the Mongo shell, with the Mongo daemon running in one terminal, type mongo in another terminal window. This will run the Mongo shell which is an application to access data in MongoDB.
 To exit the Mongo shell run quit()
 To stop the Mongo daemon hit ctrl-c
+
+To import an array of json objects:
+mongoimport --db dictionary --collection english-dutch --file ./data/nld-eng.json --jsonArray
+
+show dbs;
+use fortunes
+show collections;
+
+#print items in collection
+db.fortuneCollection.find().toArray()
 
 
 React Setup
