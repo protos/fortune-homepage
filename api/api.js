@@ -33,15 +33,6 @@ server.listen(config.port, () => {
             console.log('An error occurred while attempting to connect to MongoDB', err);
             process.exit(1)
         }
-        require('./routes')({ db, server })
-    })
-
-    mongodb.connect(config.db.dictionaryUri, (err, db) => {
-        if (err) {
-            console.log('An error occurred while attempting to connect to MongoDB', err);
-            process.exit(1)
-        }
-
         console.log(
             '%s v%s ready to accept connections on port %s in %s environment.',
             server.name,
@@ -50,6 +41,5 @@ server.listen(config.port, () => {
             config.env
         );
         require('./routes')({ db, server })
-    })
-
+    });
 });

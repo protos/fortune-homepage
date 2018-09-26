@@ -7,7 +7,7 @@ module.exports = {
     port: process.env.PORT || 3001,
     db: {
         fortuneUri: 'mongodb://localhost:27017/fortunes',
-        dictionaryUri: 'mongodb://localhost:27017/dictionary'
+        // dictionaryUri: 'mongodb://localhost:27017/dictionary'
     },
     spaceStationUrl: 'http://api.open-notify.org/iss-now.json',
     stockEbayPriceUrl: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=EBAY&apikey=0SHSCD7B8E86NMFH',

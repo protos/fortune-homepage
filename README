@@ -39,7 +39,7 @@ To exit the Mongo shell run quit()
 To stop the Mongo daemon hit ctrl-c
 
 To import an array of json objects:
-mongoimport --db dictionary --collection english-dutch --file ./data/nld-eng.json --jsonArray
+mongoimport --db dictionary --collection englishDutchDict --file ./data/nld-eng.json --jsonArray
 
 show dbs;
 use fortunes

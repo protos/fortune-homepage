@@ -12,11 +12,9 @@ module.exports = function(ctx) {
           server = ctx.server;
 
     const fortunePromise = db.collection('fortuneCollection').find().toArray();
-    const dictionaryPromise = db.collection('english-dutch').find().toArray();
-
+    const dictionaryPromise = db.collection('englishDutchDict').find().toArray();
 
     server.get('/random-fortune', (req, res, next) => {
-
         fortunePromise.then((fortunes) => {
             let index = Math.floor(Math.random() * fortunes.length - 1);
             res.send(200, fortunes[index]);
@@ -27,6 +25,26 @@ module.exports = function(ctx) {
         });
         next()
     });
+
+
+    server.get('/random-translations', (req, res, next) => {
+        const amount = req.query.amount? req.query.amount: 1;
+        var translationArray = [];
+
+        dictionaryPromise.then((translations) => {
+            for (let k = 0; k < amount; k++) {
+                let index = Math.floor(Math.random() * translations.length - 1);
+                translationArray.push(translations[index]);
+            }
+            res.send(200, translationArray);
+        })
+        .catch((err) => {
+            res.send(200, "Something horrible has happened !!!");
+        });
+
+        next()
+    });
+
 
     server.get('/all-fortunes', (req, res, next) => {
         fortunePromise.then((fortunes) => {
@@ -81,7 +99,7 @@ module.exports = function(ctx) {
                 res.send(JSON.parse(data));
             })
         }).on('error', (err) => {
-            res.send(200, "No paypal price received");
+            res.send(200, "No ebay price received");
         });
     });
 
