@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import './FortuneView.css';
 
-class FortuneView extends Component {
+class TranslationsWidgetView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            fortune: this.props.fortune
+            dutchWord: this.props.dutchWord,
+            englishWord: this.props.englishWord
+
         }
     }
 
@@ -14,14 +15,14 @@ class FortuneView extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Todays Fortune.</h1>
+                    <h1 className="App-title">Todays Dutch Translation:</h1>
                 </header>
                 <div class="fortune-text">
-                    {this.state.fortune}
+                    {this.state.englishWord} :  {this.state.dutchWord}
                 </div>
             </div>
         );
     }
 }
 
-export default FortuneView;
+export default TranslationsWidgetView;

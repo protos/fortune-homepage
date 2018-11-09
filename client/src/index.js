@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import FortuneData from './FortuneData';
+import HomeWrapper from './HomeWrapper';
 import StockWidget from './StockWidget';
 
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<FortuneData />,
+ReactDOM.render(<HomeWrapper />,
     document.getElementById('fortune'));
-
-// ReactDOM.render(<StockWidget />,
-//     document.getElementById('stock-widget'));
-
 
 registerServiceWorker();
