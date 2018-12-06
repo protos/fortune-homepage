@@ -27,6 +27,9 @@ class StockWidgetView  extends Component {
                     <header className="App-header">
                         <h1 className="App-title">{this.state.title}</h1>
                     </header>
+                    <div className="todays-price">
+                        Todays Value: {this.state.prices[0][1]}
+                    </div>
                     <div className="stock-graph">
                         <ChartistGraph data={data} type={'Bar'}/>
                     </div>
