@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 
-class FortuneWidgetView extends Component {
+class TextView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            fortune: this.props.fortune
+            title: this.props.title,
+            text: this.props.text
         }
     }
 
@@ -13,14 +14,14 @@ class FortuneWidgetView extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Todays Fortune.</h1>
+                    <h1 className="App-title">{this.state.title}</h1>
                 </header>
-                <div className="fortune-text">
-                    {this.state.fortune}
+                <div className="dynamic-text">
+                    {this.state.text}
                 </div>
             </div>
         );
     }
 }
 
-export default FortuneWidgetView;
+export default TextView;

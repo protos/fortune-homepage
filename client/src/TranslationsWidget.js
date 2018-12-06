@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import TranslationsWidgetView from "./TranslationsWidgetView";
+import TextView from "./TextView";
 
 class TranslationsWidget  extends Component {
     constructor(props) {
@@ -9,7 +9,6 @@ class TranslationsWidget  extends Component {
             dutchWord: null,
             englishWord: null
         };
-
     }
 
 
@@ -17,17 +16,15 @@ class TranslationsWidget  extends Component {
         fetch('/random-translations')
             .then(response => response.json()
                 .then(node => {
-                    console.log ('returned!: ' + node);
                     this.setState({ dutchWord: node[0].nld, englishWord: node[0].eng });
-
                 })
             );
     }
 
     render() {
-        console.log ('Dutch: ' + this.state.dutchWord);
         if (this.state.dutchWord) {
-            return <TranslationsWidgetView dutchWord={this.state.dutchWord} englishWord={this.state.englishWord} />;
+            const text = this.state.dutchWord  + ' : ' + this.state.englishWord;
+            return <TextView title="Todays Translation" text={text} />;
         } else {
             return null;
         }

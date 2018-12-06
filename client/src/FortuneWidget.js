@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FortuneWidgetView from "./FortuneWidgetView";
+import TextView from "./TextView";
 
 class FortuneWidget  extends Component {
     constructor(props) {
@@ -7,8 +7,6 @@ class FortuneWidget  extends Component {
 
         this.state = {
             fortune: null,
-            translations: null
-
         };
     }
 
@@ -25,7 +23,7 @@ class FortuneWidget  extends Component {
 
     render() {
         if (this.state.fortune) {
-            return <FortuneWidgetView fortune={this.state.fortune} />;
+            return <TextView title="Todays Fortune" text={this.state.fortune} />;
         } else {
             return null;
         }

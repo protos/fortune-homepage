@@ -15,6 +15,7 @@ module.exports = function(ctx) {
     const dictionaryPromise = db.collection('englishDutchDict').find().toArray();
 
     server.get('/random-fortune', (req, res, next) => {
+        console.log ('listening!!!');
         fortunePromise.then((fortunes) => {
             let index = Math.floor(Math.random() * fortunes.length - 1);
             res.send(200, fortunes[index]);

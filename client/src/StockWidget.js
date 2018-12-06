@@ -6,20 +6,31 @@ class StockWidget  extends Component {
         super(props);
 
         this.state = {
-            dailyPrices: null
+            prices: null
         };
+    }
 
+
+    componentDidMount() {
         fetch('/ebay-price')
             .then(response => response.json()
                 .then(node => {
-                    this.setState({dailyPrices: node['Time Series (Daily)']});
+                    let adjustedPrices = [];
+                    for (let i = 0; i < Object.keys(node['Time Series (Daily)']).length; i++) {
+                        adjustedPrices.push([Object.keys(node['Time Series (Daily)'])[i], node['Time Series (Daily)'][Object.keys(node['Time Series (Daily)'])[i]]["5. adjusted close"]]);
+                    }
+                    this.setState({prices: adjustedPrices});
                 })
             );
     }
 
+
     render() {
-        console.log ("Test: " + this.state.dailyPrices);
-        return <StockWidgetView/>;
+        if (this.state.prices) {
+            return <StockWidgetView title="eBay Daily Stock Prices" prices={this.state.prices} />;
+        } else {
+            return null;
+        }
     }
 }
 
