@@ -14,8 +14,12 @@ module.exports = function(ctx) {
     const fortunePromise = db.collection('fortuneCollection').find().toArray();
     const dictionaryPromise = db.collection('englishDutchDict').find().toArray();
 
+    let priceCache = {
+        date: null,
+        prices: null
+    };
+
     server.get('/random-fortune', (req, res, next) => {
-        console.log ('listening!!!');
         fortunePromise.then((fortunes) => {
             let index = Math.floor(Math.random() * fortunes.length - 1);
             res.send(200, fortunes[index]);
@@ -90,18 +94,33 @@ module.exports = function(ctx) {
 
 
     server.get('/ebay-price', (req, res, next) => {
-        https.get(config.stockEbayPriceUrl, (resp) => {
-            let data = '';
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
+        let today = new Date().toDateString();
 
-            resp.on('end', () => {
-                res.send(JSON.parse(data));
-            })
-        }).on('error', (err) => {
-            res.send(200, "No ebay price received");
-        });
+        console.log ('cache dates: ' + priceCache.date + ' ' + today);
+
+        if (!priceCache.date || priceCache.date !== today) {
+            console.log('cache invalid: ');
+            priceCache.date = today;
+
+            https.get(config.stockEbayPriceUrl, (resp) => {
+                let data = '';
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                resp.on('end', () => {
+                    priceCache.prices = JSON.parse(data);
+
+                    res.send(priceCache.prices);
+                })
+            }).on('error', (err) => {
+                res.send(200, "No ebay price received");
+            });
+        }
+        else {
+            console.log ('using cache');
+            res.send(priceCache.prices);
+        }
     });
 
 
